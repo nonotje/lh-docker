@@ -1,5 +1,5 @@
 # Start the MangOS platform build (LightsHope)
-FROM lh-core:latest AS builder
+FROM lh-build:latest AS builder
 
 # Install the latest database & merge the latest commits
 FROM mysql:5.7

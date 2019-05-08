@@ -1,5 +1,5 @@
 # Start the MangOS platform build (LightsHope)
-FROM lh-core:latest AS builder
+FROM lh-build:latest AS builder
 
 # Copy over the build server to a stable platform!
 FROM gcc:6
