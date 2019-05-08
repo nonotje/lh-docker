@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+   db:
+     build:
+       context: ./lh-db
+     image: lh-db
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: mangos
+
+   realmd:
+     depends_on:
+       - db
+     build:
+       context: ./lh-realmd
+     image: lh-realmd
+     ports:
+       - "3724:3724"
+     restart: always
+     environment:
+       - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
+
+   server:
+     tty: true
+     stdin_open: true
+     depends_on:
+       - db
+       - realmd
+     build:
+       context: ./lh-mangosd
+     image: lh-mangosd
+     volumes:
+       - ../maps/maps:/server/maps
+       - ../maps/vmaps:/server/vmaps
+       - ../maps/mmaps:/server/mmaps
+       - ../maps/5875/dbc:/server/dbc
+       #- mangos_maps:/server/maps
+       #- mangos_vmaps:/server/vmaps
+       #- mangos_mmaps:/server/mmaps
+       #- mangos_dbc:/server/dbc
+     ports:
+       - "8085:8085"
+     restart: always
+     environment:
+       - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
+       - WORLD_DATABASE_INFO=db;3306;root;mangos;mangos
+       - CHARACTER_DATABASE_INFO=db;3306;root;mangos;characters
+       - LOGS_DATABASE_INFO=db;3306;root;mangos;logs
+
+volumes:
+    db_data:
+    mangos_maps:
+    mangos_vmaps:
+    mangos_mmaps:
+    mangos_dbc:
