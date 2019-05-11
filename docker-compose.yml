@@ -5,11 +5,25 @@ services:
      build:
        context: ./lh-db
      image: lh-db
+     ports:
+       - "3306:3306"
      volumes:
        - db_data:/var/lib/mysql
      restart: always
      environment:
-       MYSQL_ROOT_PASSWORD: mangos
+       - MYSQL_ROOT_PASSWORD=mangos
+
+   web:
+     depends_on:
+      - db
+     image: phpmyadmin/phpmyadmin:latest
+     environment:
+      - PMA_HOSTS=db
+      - PMA_VERBOSES='MySQL Server 1'
+     ports:
+      - "80:80"
+     volumes:
+      - /sessions
 
    realmd:
      depends_on:
@@ -23,7 +37,7 @@ services:
      environment:
        - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
 
-   server:
+   mangosd:
      tty: true
      stdin_open: true
      depends_on:
@@ -33,10 +47,7 @@ services:
        context: ./lh-mangosd
      image: lh-mangosd
      volumes:
-       - ../maps/maps:/server/maps
-       - ../maps/vmaps:/server/vmaps
-       - ../maps/mmaps:/server/mmaps
-       - ../maps/5875/dbc:/server/dbc
+       - ./lh-mangosd/datadir:/server/data:rw
        #- mangos_maps:/server/maps
        #- mangos_vmaps:/server/vmaps
        #- mangos_mmaps:/server/mmaps
@@ -45,6 +56,7 @@ services:
        - "8085:8085"
      restart: always
      environment:
+       - WOWPATCH_INFO=10
        - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
        - WORLD_DATABASE_INFO=db;3306;root;mangos;mangos
        - CHARACTER_DATABASE_INFO=db;3306;root;mangos;characters
@@ -52,7 +64,7 @@ services:
 
 volumes:
     db_data:
-    mangos_maps:
-    mangos_vmaps:
-    mangos_mmaps:
-    mangos_dbc:
+    # mangos_maps:
+    # mangos_vmaps:
+    # mangos_mmaps:
+    # mangos_dbc:

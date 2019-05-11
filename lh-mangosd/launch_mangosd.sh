@@ -17,9 +17,10 @@ BINDIR=/server/bin
 CONFIGS=/server/etc
 
 # populate template with env vars
-sed -i "s/LOGIN_DATABASE_INFO/$LOGIN_DATABASE_INFO/g" $CONFIGS/mangosd.conf
-sed -i "s/WORLD_DATABASE_INFO/$WORLD_DATABASE_INFO/g" $CONFIGS/mangosd.conf
-sed -i "s/CHARACTER_DATABASE_INFO/$CHARACTER_DATABASE_INFO/g" $CONFIGS/mangosd.conf
-sed -i "s/LOGS_DATABASE_INFO/$LOGS_DATABASE_INFO/g" $CONFIGS/mangosd.conf
+sed -i "s/WOWPATCH_INFO/${WOWPATCH_INFO}/g" ${CONFIGS}/mangosd.conf
+sed -i "s/LOGIN_DATABASE_INFO/${LOGIN_DATABASE_INFO}/g" ${CONFIGS}/mangosd.conf
+sed -i "s/WORLD_DATABASE_INFO/${WORLD_DATABASE_INFO}/g" ${CONFIGS}/mangosd.conf
+sed -i "s/CHARACTER_DATABASE_INFO/${CHARACTER_DATABASE_INFO}/g" ${CONFIGS}/mangosd.conf
+sed -i "s/LOGS_DATABASE_INFO/${LOGS_DATABASE_INFO}/g" ${CONFIGS}/mangosd.conf
 
-${BINDIR}/mangosd -c $CONFIGS/mangosd.conf ${AHCONFIG}
+${BINDIR}/mangosd -c ${CONFIGS}/mangosd.conf
