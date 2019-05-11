@@ -1,0 +1,25 @@
+#!/bin/sh
+
+DB_USERNAME=root
+DB_PASSWORD=mangos
+DB_SERVER=192.168.0.2
+
+DB_NAME_WORLD=mangos
+DB_NAME_CHARACTERS=characters
+DB_NAME_LOGS=logs
+DB_NAME_REALMD=realmd
+
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} < ./db_drop.sql
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} < ./db_create.sql
+
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_WORLD} < ./world.sql
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_WORLD} < ./migrations/world_db_updates.sql
+
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_CHARACTERS} < ./characters.sql
+
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_LOGS} < ./logs.sql
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_LOGS} < ./migrations/logs_db_updates.sql
+
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_REALMD} < ./logon.sql
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_REALMD} < ./migrations/logon_db_updates.sql
+mysql -u ${DB_USERNAME} --password=${DB_PASSWORD} -h ${DB_SERVER} ${DB_NAME_REALMD} < ./logon_add_realm.sql

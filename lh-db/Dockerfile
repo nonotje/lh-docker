@@ -6,7 +6,7 @@ FROM mysql:5.5
 MAINTAINER Bruno Gysels <bruno.gysels@gmail.com>
 EXPOSE 3306
 
-# COPY --from=builder /server/sql/* ./docker-entrypoint-initdb.d/
+COPY ../sql/* ./docker-entrypoint-initdb.d/
 COPY my.cnf /etc/mysql/my.cnf
 RUN apt-get update -qq && \
     apt-get install git wget -qq -y && \

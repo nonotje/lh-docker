@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+   build:
+     build:
+       context: ./lh-build
+     image: lh-build
+     restart: always
+     volumes:
+       - server_data:/server
+
    db:
      build:
        context: ./lh-db
@@ -12,6 +20,10 @@ services:
      restart: always
      environment:
        - MYSQL_ROOT_PASSWORD=mangos
+       - VARIABLE_NAME="Docker WoW"
+       - VARIABLE_ADDRESS="192.168.59.129"
+       - WOW_USERNAME=admin
+       - WOW_PASSWORD=admin
 
    web:
      depends_on:
@@ -19,9 +31,9 @@ services:
      image: phpmyadmin/phpmyadmin:latest
      environment:
       - PMA_HOSTS=db
-      - PMA_VERBOSES='MySQL Server 1'
+      - PMA_VERBOSES='MangOS MySQL Server'
      ports:
-      - "80:80"
+      - "8000:80"
      volumes:
       - /sessions
 
@@ -36,6 +48,8 @@ services:
      restart: always
      environment:
        - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
+     volumes:
+       - server_data:/server
 
    mangosd:
      tty: true
@@ -47,6 +61,7 @@ services:
        context: ./lh-mangosd
      image: lh-mangosd
      volumes:
+       - server_data:/server
        - ./lh-mangosd/datadir:/server/data:rw
        #- mangos_maps:/server/maps
        #- mangos_vmaps:/server/vmaps
@@ -64,6 +79,7 @@ services:
 
 volumes:
     db_data:
+    server_data:
     # mangos_maps:
     # mangos_vmaps:
     # mangos_mmaps:
