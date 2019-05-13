@@ -1,0 +1,55 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: Make sure the update files exist
+      file:
+        path: "{{ item }}"
+        state: touch
+      loop:
+        - "{{ playbook_dir }}/build/sql/world_db_updates.sql"
+        - "{{ playbook_dir }}/build/sql/logon_db_updates.sql"
+        - "{{ playbook_dir }}/build/sql/characters_db_updates.sql"
+        - "{{ playbook_dir }}/build/sql/logs_db_updates.sql"
+
+    - name: Import world database updates
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "mangos"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/world_db_updates.sql"
+
+    - name: Import logon database updates
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "realmd"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/logon_db_updates.sql"
+
+    - name: Import characters database updates
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "characters"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/characters_db_updates.sql"
+
+    - name: Import logs database updates
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "logs"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/logs_db_updates.sql"
+
+
+
+

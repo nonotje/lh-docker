@@ -1,0 +1,36 @@
+2019-05-13 22:16:12 Spell 6346 listed in `spell_proc_event` has exactly same proc flags as in spell.dbc, field value redundant
+2019-05-13 22:16:12 `spell_bonus_data` entry for spell 348 `direct_bonus` not needed (data from table: 0.207790, calculated 0.207714, difference of 0.000076) and 
+2019-05-13 22:16:12                                   ... `dot_bonus` not needed (data from table: 0.127270, calculated 0.127257, difference of 0.000013)
+2019-05-13 22:16:12 `spell_bonus_data` entry for spell 26573 `dot_bonus` not needed (data from table: 0.041600, calculated 0.044444, difference of 0.002844) and direct also not used
+2019-05-13 22:16:12 Spell 25918 listed in `spell_threat` as custom rank has same data as Rank 1, so redundant
+2019-05-13 22:16:12 >> Loaded `reputation_reward_rate`, table is empty!
+2019-05-13 22:16:13 Craft spell 24654 create item (Entry: 20295) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 24656 learn to invalid spell 24654, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 7866) has broken learning spell 24656, ignore
+2019-05-13 22:16:13 Craft spell 24655 create item (Entry: 20296) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 24657 learn to invalid spell 24655, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 7867) has broken learning spell 24657, ignore
+2019-05-13 22:16:13 Craft spell 23486 create item (Entry: 18984) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 23490 learn to invalid spell 23486, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 8736) has broken learning spell 23490, ignore
+2019-05-13 22:16:13 Craft spell 23489 create item (Entry: 18986) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 23491 learn to invalid spell 23489, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 8736) has broken learning spell 23491, ignore
+2019-05-13 22:16:13 Craft spell 24655 create item (Entry: 20296) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 24657 learn to invalid spell 24655, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 7866) has broken learning spell 24657, ignore
+2019-05-13 22:16:13 Craft spell 24654 create item (Entry: 20295) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 24656 learn to invalid spell 24654, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 7867) has broken learning spell 24656, ignore
+2019-05-13 22:16:13 Craft spell 23486 create item (Entry: 18984) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 23490 learn to invalid spell 23486, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 5037) has broken learning spell 23490, ignore
+2019-05-13 22:16:13 Craft spell 23489 create item (Entry: 18986) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 23491 learn to invalid spell 23489, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 5037) has broken learning spell 23491, ignore
+2019-05-13 22:16:13 Craft spell 24654 create item (Entry: 20295) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 24656 learn to invalid spell 24654, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 5040) has broken learning spell 24656, ignore
+2019-05-13 22:16:13 Craft spell 24655 create item (Entry: 20296) but item does not exist in item_template.
+2019-05-13 22:16:13 Spell 24657 learn to invalid spell 24655, and then...
+2019-05-13 22:16:13 Table `npc_trainer` (Entry: 5040) has broken learning spell 24657, ignore

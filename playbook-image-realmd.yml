@@ -1,0 +1,33 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: include project variables
+      include_vars:
+        file: vars.yml
+
+    - name: create the folder hierarchy for realmd
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ playbook_dir }}/data/realmd/etc"
+        - "{{ playbook_dir }}/data/realmd/bin"
+
+    - name: copy the binary to the new folder hierarchy
+      copy:
+        src: "{{ playbook_dir }}/build/server/bin/realmd"
+        dest: "{{ playbook_dir }}/data/realmd/bin/realmd"
+
+    - name: copy the conf-file to the new folder hierarchy
+      template:
+        src: "{{ playbook_dir }}/build/j2/realmd.conf.j2"
+        dest: "{{ playbook_dir }}/data/realmd/etc/realmd.conf"
+
+    - name: create container to run realmd
+      docker_image:
+        path: "{{ playbook_dir }}/docker/lh-realmd/"
+        name: lh-realmd
+        force: yes

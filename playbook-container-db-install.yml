@@ -1,0 +1,41 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: Import world database
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "mangos"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/world.sql.gz"
+
+    - name: Import logon database
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "realmd"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/logon.sql"
+
+    - name: Import characters database
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "characters"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/characters.sql"
+
+    - name: Import logs database
+      mysql_db:
+        login_host: "172.22.0.2"
+        login_password: "mangos"
+        login_user: "root"
+        name: "logs"
+        state: import
+        target: "{{ playbook_dir }}/build/sql/logs.sql"

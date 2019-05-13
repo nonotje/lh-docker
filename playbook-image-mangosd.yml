@@ -1,0 +1,33 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: include project variables
+      include_vars:
+        file: vars.yml
+
+    - name: create the folder hierarchy for mangosd
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ playbook_dir }}/data/mangosd/etc"
+        - "{{ playbook_dir }}/data/mangosd/bin"
+
+    - name: copy the binary to the new folder hierarchy
+      copy:
+        src: "{{ playbook_dir }}/build/server/bin/mangosd"
+        dest: "{{ playbook_dir }}/data/mangosd/bin/mangosd"
+
+    - name: copy the conf-file to the new folder hierarchy
+      template:
+        src: "{{ playbook_dir }}/build/j2/mangosd.conf.j2"
+        dest: "{{ playbook_dir }}/data/mangosd/etc/mangosd.conf"
+
+    - name: create container to run mangosd
+      docker_image:
+        path: "{{ playbook_dir }}/docker/lh-mangosd/"
+        name: lh-mangosd
+        force: yes

@@ -1,29 +1,15 @@
 version: '3'
 
 services:
-   build:
-     build:
-       context: ./lh-build
-     image: lh-build
-     restart: always
-     volumes:
-       - server_data:/server
-
    db:
-     build:
-       context: ./lh-db
      image: lh-db
      ports:
        - "3306:3306"
      volumes:
-       - db_data:/var/lib/mysql
+       - ./data/dbdata:/var/lib/mysql
      restart: always
      environment:
        - MYSQL_ROOT_PASSWORD=mangos
-       - VARIABLE_NAME="Docker WoW"
-       - VARIABLE_ADDRESS="192.168.59.129"
-       - WOW_USERNAME=admin
-       - WOW_PASSWORD=admin
 
    web:
      depends_on:
@@ -40,16 +26,12 @@ services:
    realmd:
      depends_on:
        - db
-     build:
-       context: ./lh-realmd
      image: lh-realmd
      ports:
        - "3724:3724"
      restart: always
-     environment:
-       - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
      volumes:
-       - server_data:/server
+       - ./data/realmd:/server
 
    mangosd:
      tty: true
@@ -57,30 +39,10 @@ services:
      depends_on:
        - db
        - realmd
-     build:
-       context: ./lh-mangosd
      image: lh-mangosd
      volumes:
-       - server_data:/server
-       - ./lh-mangosd/datadir:/server/data:rw
-       #- mangos_maps:/server/maps
-       #- mangos_vmaps:/server/vmaps
-       #- mangos_mmaps:/server/mmaps
-       #- mangos_dbc:/server/dbc
+       - ./data/mangosd:/server
+       - ./data/datadir:/server/data
      ports:
        - "8085:8085"
      restart: always
-     environment:
-       - WOWPATCH_INFO=10
-       - LOGIN_DATABASE_INFO=db;3306;root;mangos;realmd
-       - WORLD_DATABASE_INFO=db;3306;root;mangos;mangos
-       - CHARACTER_DATABASE_INFO=db;3306;root;mangos;characters
-       - LOGS_DATABASE_INFO=db;3306;root;mangos;logs
-
-volumes:
-    db_data:
-    server_data:
-    # mangos_maps:
-    # mangos_vmaps:
-    # mangos_mmaps:
-    # mangos_dbc:

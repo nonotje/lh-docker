@@ -1,0 +1,20 @@
+---
+app_directory: /home/bruno/lh-docker
+app_realmname: "NoNo\\'s WoWserver"
+app_realmaddress: 192.168.59.129
+
+db:
+  address: 192.168.59.129
+  port: 3306
+  username: root
+  password: mangos
+  db_world: mangos
+  db_characters: characters
+  db_login: realmd
+  db_logs: logs
+
+mangosd:
+  wowpatch: 0
+  startplayerlevel: 1
+  startplayermoney: 0
+

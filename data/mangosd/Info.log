@@ -1,0 +1,10 @@
+2019-05-13 22:16:11 Build params : "-O3 -DNDEBUG  -std=c++14 --no-warnings -fexceptions -fnon-call-exceptions -march=native -O3 -pipe "
+2019-05-13 22:16:11 Alloc library: TBB/Release
+2019-05-13 22:16:11 Core Revision: 0c6e8c88780ba632054d / 2019-04-22 11:33:42 +1000 / Linux_x64 (little-endian)
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 249]: ScheduleReset 1 for unknown instance.
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 309]: ScheduleReset 1 for unknown instance.
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 409]: ScheduleReset 1 for unknown instance.
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 469]: ScheduleReset 1 for unknown instance.
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 509]: ScheduleReset 1 for unknown instance.
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 531]: ScheduleReset 1 for unknown instance.
+2019-05-13 22:16:12 [DungeonReset] Instance 0 [map 533]: ScheduleReset 1 for unknown instance.
