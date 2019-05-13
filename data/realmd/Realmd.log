@@ -1,6 +1,0 @@
-2019-05-13 22:04:21 Core revision: 0c6e8c88780ba632054d / 2019-04-22 11:33:42 +1000 / Linux_x64 (little-endian) [realm-daemon]
-2019-05-13 22:04:21 <Ctrl-C> to stop.
-
-2019-05-13 22:04:21 Using configuration file /server/etc/realmd.conf.
-2019-05-13 22:04:21 Database: 192.168.59.129;3306;root;*;realmd
-2019-05-13 22:04:21 Added realm "NoNo's WoWserver"
