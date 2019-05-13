@@ -16,7 +16,7 @@ COPY ./launch_realmd.sh /
 VOLUME /server
 WORKDIR /server/
 
-RUN useradd -ms /bin/bash realm && chown -R realm:realm .
+RUN useradd -ms /bin/bash realm && chown -R realm:realm /server
 
 USER realm
 CMD ["/launch_realmd.sh"]

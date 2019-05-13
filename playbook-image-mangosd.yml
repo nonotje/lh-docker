@@ -20,6 +20,7 @@
       copy:
         src: "{{ playbook_dir }}/build/server/bin/mangosd"
         dest: "{{ playbook_dir }}/data/mangosd/bin/mangosd"
+        mode: u+x,g+x,o+x
 
     - name: copy the conf-file to the new folder hierarchy
       template:

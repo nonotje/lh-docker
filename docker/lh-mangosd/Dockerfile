@@ -16,7 +16,7 @@ COPY ./launch_mangosd.sh /
 VOLUME /server
 WORKDIR /server/
 
-RUN useradd -ms /bin/bash mangos && chown -R mangos:mangos .
+RUN useradd -ms /bin/bash mangos && chown -R mangos:mangos /server
 
 USER mangos
 CMD ["/launch_mangosd.sh"]

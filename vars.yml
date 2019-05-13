@@ -1,5 +1,5 @@
 ---
-app_directory: /home/bruno/lh-docker
+app_directory: /home/bruno/wowserver
 app_realmname: "NoNo\\'s WoWserver"
 app_realmaddress: 192.168.59.129
 

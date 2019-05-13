@@ -4,6 +4,10 @@
   connection: local
 
   tasks:
+    - name: include project variables
+      include_vars:
+        file: vars.yml
+    
     - name: Make sure the update files exist
       file:
         path: "{{ item }}"
@@ -16,37 +20,37 @@
 
     - name: Import world database updates
       mysql_db:
-        login_host: "172.22.0.2"
-        login_password: "mangos"
-        login_user: "root"
-        name: "mangos"
+        login_host: "{{ db.address }}"
+        login_user: "{{ db.username }}"
+        login_password: "{{ db.password }}"
+        name: "{{ db.db_world }}"
         state: import
         target: "{{ playbook_dir }}/build/sql/world_db_updates.sql"
 
     - name: Import logon database updates
       mysql_db:
-        login_host: "172.22.0.2"
-        login_password: "mangos"
-        login_user: "root"
-        name: "realmd"
+        login_host: "{{ db.address }}"
+        login_user: "{{ db.username }}"
+        login_password: "{{ db.password }}"
+        name: "{{ db.db_login }}"
         state: import
         target: "{{ playbook_dir }}/build/sql/logon_db_updates.sql"
 
     - name: Import characters database updates
       mysql_db:
-        login_host: "172.22.0.2"
-        login_password: "mangos"
-        login_user: "root"
-        name: "characters"
+        login_host: "{{ db.address }}"
+        login_user: "{{ db.username }}"
+        login_password: "{{ db.password }}"
+        name: "{{ db.db_characters }}"
         state: import
         target: "{{ playbook_dir }}/build/sql/characters_db_updates.sql"
 
     - name: Import logs database updates
       mysql_db:
-        login_host: "172.22.0.2"
-        login_password: "mangos"
-        login_user: "root"
-        name: "logs"
+        login_host: "{{ db.address }}"
+        login_user: "{{ db.username }}"
+        login_password: "{{ db.password }}"
+        name: "{{ db.db_logs }}"
         state: import
         target: "{{ playbook_dir }}/build/sql/logs_db_updates.sql"
 

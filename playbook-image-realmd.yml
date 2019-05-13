@@ -20,6 +20,7 @@
       copy:
         src: "{{ playbook_dir }}/build/server/bin/realmd"
         dest: "{{ playbook_dir }}/data/realmd/bin/realmd"
+        mode: u+x
 
     - name: copy the conf-file to the new folder hierarchy
       template:
