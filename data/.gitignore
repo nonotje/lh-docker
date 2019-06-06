@@ -1,4 +1,8 @@
 ./mangosd/**
+./mangosd/*
 ./realmd/**
+./realmd/*
 ./dbdata/**
+./dbdata/*
 ./datadir/**
+./datadir/*
