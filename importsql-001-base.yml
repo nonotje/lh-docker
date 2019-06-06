@@ -4,7 +4,7 @@
   connection: local
 
   vars_prompt:
-  - name: "db.address"
+  - name: "container_ip"
     prompt: "IP Address of the DB container?"
     private: no
 
@@ -15,7 +15,7 @@
 
     - name: Import world database
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_world }}"
@@ -24,7 +24,7 @@
 
     - name: Import logon database
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_login }}"
@@ -33,7 +33,7 @@
 
     - name: Import characters database
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_characters }}"
@@ -42,7 +42,7 @@
 
     - name: Import logs database
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_logs }}"
@@ -56,7 +56,7 @@
 
     - name: Import logon realmlist
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_login }}"

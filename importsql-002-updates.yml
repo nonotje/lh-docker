@@ -4,7 +4,7 @@
   connection: local
 
   vars_prompt:
-  - name: "db.address"
+  - name: "container_ip"
     prompt: "IP Address of the DB container?"
     private: no
 
@@ -25,7 +25,7 @@
 
     - name: Import world database updates
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_world }}"
@@ -34,7 +34,7 @@
 
     - name: Import logon database updates
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_login }}"
@@ -43,7 +43,7 @@
 
     - name: Import characters database updates
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_characters }}"
@@ -52,7 +52,7 @@
 
     - name: Import logs database updates
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_logs }}"
