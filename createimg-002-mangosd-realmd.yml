@@ -1,0 +1,21 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: include project variables
+      include_vars:
+        file: vars.yml
+
+    - name: create container to run realmd
+      docker_image:
+        path: "{{ playbook_dir }}/docker/realmd/"
+        name: realmd
+        force: yes
+
+    - name: create container to run mangosd
+      docker_image:
+        path: "{{ playbook_dir }}/docker/mangosd/"
+        name: mangosd
+        force: yes
