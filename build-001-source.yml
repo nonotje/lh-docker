@@ -32,7 +32,10 @@
 
     - name: create container to build the software
       docker_image:
-        path: "{{ playbook_dir }}/docker/build/"
+        build:
+          path: "{{ playbook_dir }}/docker/build/"
+          pull: yes
+        source: build
         name: mangos-build
 
     - name: (re-)create the build/server folder
