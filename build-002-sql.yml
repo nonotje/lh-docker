@@ -24,7 +24,7 @@
 
     - name: unzip the world db
       unarchive:
-        src: "{{ playbook_dir }}/build/sql/{{ app_repository_db_name }}"
+        src: "{{ playbook_dir }}/build/sql/{{ app_repository_db_name }}.zip"
         dest: "{{ playbook_dir }}/build/sql"
         remote_src: yes
 
