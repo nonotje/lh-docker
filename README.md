@@ -1,2 +1,2 @@
-# lh-docker
-Dockerized LightsHope Server
+# mangos_docker
+Dockerized MangOS Server
