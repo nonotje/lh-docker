@@ -1,0 +1,64 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: include project variables
+      include_vars:
+        file: vars.yml
+
+    - name: (re-)create the build/core folder
+      file:
+        path: "{{ playbook_dir }}/build/core"
+        state: "{{ item }}"
+      loop:
+        - absent
+        - directory
+
+    - name: retrieve the source code
+      git:
+        repo: "{{ app_repository_source }}"
+        dest: "{{ playbook_dir }}/build/core"
+        accept_hostkey: yes
+
+    - name: (re-)create the build/core/build folder
+      file:
+        path: "{{ playbook_dir }}/build/core/build"
+        state: "{{ item }}"
+      loop:
+        - absent
+        - directory
+
+    - name: create container to build the software
+      docker_image:
+        path: "{{ playbook_dir }}/docker/build/"
+        name: mangos-build
+
+    - name: (re-)create the build/server folder
+      file:
+        path: "{{ playbook_dir }}/build/server"
+        state: "{{ item }}"
+      loop:
+        - absent
+        - directory
+
+    - name: build the software with the mangos-build container
+      docker_container:
+        name: mangos-build
+        image: mangos-build
+        state: started
+        recreate: yes
+        detach: no
+        cleanup: yes
+        command: ./compile.sh
+        tty: yes
+        volumes:
+          - "{{ playbook_dir }}/build/core:/core"
+          - "{{ playbook_dir }}/build/server:/server"
+
+    - name: remove the mangos-build image
+      docker_image:
+        name: mangos-build
+        state: absent
+

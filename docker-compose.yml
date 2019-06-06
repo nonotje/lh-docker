@@ -2,7 +2,7 @@ version: '3'
 
 services:
    db:
-     image: lh-db
+     image: mysql
      ports:
        - "3306:3306"
      volumes:
@@ -26,7 +26,7 @@ services:
    realmd:
      depends_on:
        - db
-     image: lh-realmd
+     image: realmd
      ports:
        - "3724:3724"
      restart: always
@@ -39,7 +39,7 @@ services:
      depends_on:
        - db
        - realmd
-     image: lh-mangosd
+     image: mangosd
      volumes:
        - ./data/mangosd:/server
        - ./data/datadir:/server/data

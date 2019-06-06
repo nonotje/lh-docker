@@ -1,0 +1,43 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: include project variables
+      include_vars:
+        file: vars.yml
+
+    - name: (re-)create the build/sql folder
+      file:
+        path: "{{ playbook_dir }}/build/sql"
+        state: "{{ item }}"
+      loop:
+        - absent
+        - directory
+
+    - name: retrieve the world database
+      git:
+        repo: "{{ app_repository_db }}"
+        dest: "{{ playbook_dir }}/build/sql"
+        accept_hostkey: yes
+
+    - name: unzip the world db
+      unarchive:
+        src: "{{ playbook_dir }}/build/sql/{{ app_repository_db_name }}"
+        dest: "{{ playbook_dir }}/build/sql"
+        remote_src: yes
+
+    - name: run merge script for sql updates
+      shell: ./merge.sh
+      args:
+        chdir: "{{ playbook_dir }}/build/core/sql/migrations"
+    
+    - name: copy build sql files to build/sql folder
+      copy:
+        src: "{{ item }}"
+        dest: "{{ playbook_dir }}/build/sql"
+      with_fileglob:
+        - "{{ playbook_dir }}/build/core/sql/*.sql"
+        - "{{ playbook_dir }}/build/core/sql/migrations/*_db_updates.sql"
+

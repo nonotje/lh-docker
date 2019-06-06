@@ -1,0 +1,10 @@
+---
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: create container to run db
+      docker_image:
+        path: "{{ playbook_dir }}/docker/db/"
+        name: mangos-db
