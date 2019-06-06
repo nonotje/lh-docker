@@ -6,6 +6,7 @@
   vars_prompt:
   - name: "db.address"
     prompt: "IP Address of the DB container?"
+    private: no
 
   tasks:
     - name: include project variables
