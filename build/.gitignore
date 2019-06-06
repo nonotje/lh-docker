@@ -1,3 +1,6 @@
 ./sql/**
+./sql/*
 ./server/**
+./server/*
 ./core/**
+./core/*
