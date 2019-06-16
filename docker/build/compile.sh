@@ -10,8 +10,8 @@ fi
 cd /core/build
 
 if [ ! -f /core/compiled ]; then
-  cmake -DDEBUG=0 -DUSE_LIBCURL=1 .. && make -j8
+  cmake -DDEBUG=0 -DUSE_LIBCURL=1 .. && make -j1
   touch /core/compiled
 fi
 
-make install -j8
+make install -j1
