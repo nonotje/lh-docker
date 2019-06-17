@@ -6,8 +6,13 @@
   vars_prompt:
     - name: "game_username"
       prompt: "Username"
+      private: no
     - name: "game_password"
       prompt: "Password"
+      private: no
+    - name: "container_ip"
+      prompt: "IP Address of the DB container?"
+      private: no
 
   tasks:
     - name: include project variables
@@ -21,7 +26,7 @@
 
     - name: Import logon realmlist
       mysql_db:
-        login_host: "{{ db.address }}"
+        login_host: "{{ container_ip }}"
         login_user: "{{ db.username }}"
         login_password: "{{ db.password }}"
         name: "{{ db.db_login }}"

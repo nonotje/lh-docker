@@ -4,7 +4,7 @@ app_realmaddress: wow.gsls.be
 app_repository_source: https://github.com/nonotje/lh-core.git
 app_repository_branch: development
 app_repository_db: https://github.com/nonotje/mangos_db.git
-app_repository_db_name: world_full_08_february_2019.sql
+app_repository_db_name: world_full_08_june_2018.sql
 
 db:
   address: mangosdocker_db
